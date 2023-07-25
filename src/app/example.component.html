@@ -1,0 +1,31 @@
+<form [formGroup]="form" class="phone__container">
+  <input
+    formControlName="code"
+    [readonly]="true"
+    class="phone__input phone__input_code"
+    (click)="showList()"
+  />
+  <input
+    placeholder="Введите номер телефона"
+    type="tel"
+    formControlName="phone"
+    class="phone__input phone__input_phone"
+  />
+</form>
+<div class="code-list-container" *ngIf="showCountryCodes" [@showList]>
+  <ul class="code-list">
+    <li
+      *ngFor="let country of countryCodes"
+      (click)="selectCountryCode(country.flag)"
+      class="code-list__item"
+    >
+      <span>{{ country.flag }} {{ country.country }}</span
+      ><span #code>{{ country.code }}</span>
+    </li>
+  </ul>
+</div>
+
+<div style="display: flex; flex-direction: column; color: white;">
+    <span>Code: {{selectedCountryCode}}</span>
+    <span>Phone number: {{phoneNumber}}</span>
+</div>
